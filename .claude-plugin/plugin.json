@@ -1,0 +1,8 @@
+{
+  "name": "docshook",
+  "description": "Enforces documentation practices by checking that projects have proper documentation",
+  "version": "0.1.0",
+  "author": {
+    "name": "ido2103"
+  }
+}
