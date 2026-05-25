@@ -1,7 +1,7 @@
 {
   "name": "docshook",
-  "description": "Enforces documentation practices by checking that projects have proper documentation",
-  "version": "0.1.0",
+  "description": "Automatically enforces comprehensive documentation. When Claude modifies code, it must create and maintain project docs (architecture, API, schemas, setup, and more) in docs/ before finishing.",
+  "version": "1.0.0",
   "author": {
     "name": "ido2103"
   }
