@@ -80,17 +80,16 @@ def extract_file_path(entry: Any) -> str | None:
     tool_name = None
     tool_input = None
 
-    if entry.get("type") == "tool_use":
-        tool_name = entry.get("name", "")
-        tool_input = entry.get("input", {})
-    elif entry.get("type") == "assistant" and "content" in entry:
-        content = entry["content"]
+    if entry.get("type") == "assistant":
+        message = entry.get("message", {})
+        content = message.get("content", [])
         if isinstance(content, list):
             for block in content:
                 if isinstance(block, dict) and block.get("type") == "tool_use":
-                    tool_name = block.get("name", "")
-                    tool_input = block.get("input", {})
-                    break
+                    if block.get("name") in ("Edit", "Write"):
+                        tool_name = block.get("name", "")
+                        tool_input = block.get("input", {})
+                        break
 
     if tool_name in ("Edit", "Write") and isinstance(tool_input, dict):
         return tool_input.get("file_path", "")
@@ -171,7 +170,6 @@ def main():
     )
 
     if message:
-        print(json.dumps({"decision": "block", "reason": message}))
         print(message, file=sys.stderr)
         sys.exit(2)
 

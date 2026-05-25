@@ -5,8 +5,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3",
-            "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/enforce_docs.py"],
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/enforce_docs.py",
+            "args": [],
             "timeout": 15
           }
         ]
